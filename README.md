@@ -2,7 +2,7 @@
 
 Benchmarking two solvers on the Sherrington-Kirkpatrick (SK) Ising model:
 
-- `IAMP` (Incremental Approximate Message Passing) [[1]](#references)
+- `IAMP` (Incremental Approximate Message Passing) [1]
 - `MiP-CRIP` (Minima Preserving Continuous Relaxation)
 
 ## Files
@@ -38,4 +38,4 @@ The benchmark uses both type of SK models:
 
 ## References
 
-- "Optimization of the Sherrington-Kirkpatrick Hamiltonian." *arXiv:1812.10897v2*.
+[1] "Optimization of the Sherrington-Kirkpatrick Hamiltonian." *arXiv:1812.10897v2*.
