@@ -28,7 +28,7 @@ def data2graph(path):
         Adjacency matrix as float32
     """
     # Read the data from the text file, skipping the first line
-    data = pd.read_csv(path, delim_whitespace=True, skiprows=1, header=None)
+    data = pd.read_csv(path, sep=r'\s+', skiprows=1, header=None)
 
     # Extract nodes and weights
     nodes = data.iloc[:, 0:2].values.astype(int)
@@ -43,7 +43,6 @@ def data2graph(path):
     adj_matrix = nx.adjacency_matrix(G).todense()
 
     return G, np.array(adj_matrix).astype(np.float32)
-
 
 def eng2cut(energy, J_sum):
     """
