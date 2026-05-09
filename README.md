@@ -7,23 +7,21 @@
 Official code repository for the paper "Local-Minima-Preserving Polynomial Relaxation of Ising Problems" introducing MiP-CRIP.
 
 ## Overview
-
-Benchmarking two solvers on the Sherrington-Kirkpatrick (SK) Ising model:
-
-- `IAMP` (Incremental Approximate Message Passing) [1]
-- `MiP-CRIP` (Minima Preserving Continuous Relaxation)
+`MiP-CRIP` (Minima Preserving Continuous Relaxation of Ising Problems) : Solver for Ising model optimization problems, including MAX-CUT, Number Partitioning Problem (NPP), Sherrington-Kirkpatrick (SK) models, and complete graphs.
 
 ## Files
 
 - `benchmark_SK.py` : benchmark runner and summary table output
 - `demo_run.ipynb` : interactive Jupyter notebook demonstrating MiP-CRIP on SK, Complete Graph ($K_n$), G-set, and NPP models
 - `quick_run.py` : straightforward quick run example for MiP-CRIP
-- `iamp_sk_solver.py` : IAMP implementation
+- `iamp_sk_solver.py` : implementation of IAMP (Incremental Approximate Message Passing) solver for spin-glas model [1]
 - `mip_crip.py` : MiP-CRIP implementation
 - `environment.yml` : Conda environment
 - `G10_graph.txt` : 800 nodes, 94.01\% sparse random graph with $\pm 1$ edge-weights from G-set dataset (https://web.stanford.edu/~yyye/yyye/Gset/)
 
-## Quick Start
+1. **Install Conda**: Download [Miniconda](https://docs.conda.io/en/latest/miniconda.html) if needed.
+
+2. **Create Environment**:
 
 ```bash
 conda env create -f environment.yml
