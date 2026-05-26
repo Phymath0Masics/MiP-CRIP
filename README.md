@@ -4,19 +4,19 @@
 > 
 > **Authors:** Debraj Banerjee, Santanu Mahapatra, Kunal N. Chaudhury
 
-Official code repository for the paper "Local-Minima-Preserving Polynomial Relaxation of Ising Problems" introducing MiP-CRIP.
+Official code repository for the paper "Local-Minima-Preserving Polynomial Relaxation of Ising Problems" introducing MiP-CRIM.
 
 ## Overview
-`MiP-CRIP` (Minima Preserving Continuous Relaxation of Ising Problems) : Solver for Ising model optimization problems, including MAX-CUT, Number Partitioning Problem (NPP), Sherrington-Kirkpatrick (SK) models, and complete graphs.
+`MiP-CRIM` (Minima Preserving Continuous Relaxation of Ising Model) : Solver for Ising model optimization problems, including MAX-CUT, Number Partitioning Problem (NPP), Sherrington-Kirkpatrick (SK) models, and complete graphs.
 
 ## Files
 
 - `ICML_paper.pdf` : arXiv version of the Paper
 - `benchmark_SK.py` : benchmark runner and summary table output
-- `demo_run.ipynb` : interactive Jupyter notebook demonstrating MiP-CRIP on SK, Complete Graph ($K_n$), G-set, and NPP models
-- `quick_run.py` : straightforward quick run example for MiP-CRIP
+- `demo_run.ipynb` : interactive Jupyter notebook demonstrating MiP-CRIM on SK, Complete Graph ($K_n$), G-set, and NPP models
+- `quick_run.py` : straightforward quick run example for MiP-CRIM
 - `iamp_sk_solver.py` : implementation of IAMP (Incremental Approximate Message Passing) solver for spin-glas model [1]
-- `mip_crip.py` : MiP-CRIP implementation
+- `mip_crim.py` : MiP-CRIM implementation
 - `environment.yml` : Conda environment
 - `G10_graph.txt` : 800 nodes, 94.01\% sparse random graph with $\pm 1$ edge-weights from G-set dataset (https://web.stanford.edu/~yyye/yyye/Gset/)
 
@@ -26,7 +26,7 @@ Official code repository for the paper "Local-Minima-Preserving Polynomial Relax
 
 ```bash
 conda env create -f environment.yml
-conda activate mip-crip
+conda activate mip-crim
 python quick_run.py
 python benchmark_SK.py
 ```
@@ -36,9 +36,9 @@ python benchmark_SK.py
 The benchmark uses the following fine-tued hyperparameters, which are fixed throughout every test case so both methods are compared under a consistent setup.
 
 - IAMP: `beta=6.0`, `delta=0.02`, `n_restarts=15`.
-- MiP-CRIP: `T=10`, `K=200`, `alpha=0.000014996` ($\alpha$), `beta=0.001` ($\beta$), `lambda_=0.0707` ($\lambda$), `step=1.0` ($\tau$, ADAM learning rate), `beta1=0.09` ($\beta_1$, 1st moment for ADAM), `beta2=0.999` ($\beta_2$, 2nd moment for ADAM), `eps=1e-8`, `sigma_noise=1e-3`.
+- MiP-CRIM: `T=10`, `K=200`, `alpha=0.000014996` ($\alpha$), `beta=0.001` ($\beta$), `lambda_=0.0707` ($\lambda$), `step=1.0` ($\tau$, ADAM learning rate), `beta1=0.09` ($\beta_1$, 1st moment for ADAM), `beta2=0.999` ($\beta_2$, 2nd moment for ADAM), `eps=1e-8`, `sigma_noise=1e-3`.
 
-- The elements $J_{ij}$ in the SK model are rounded to 5th decimal places so that $lsb = 10^{-5}$ and we get thebound $\gamma_0 = 10^{-5}$, satisfying the admissibility condition: $3\beta\lambda^2 < \alpha < \beta\lambda^2 + \gamma_0$ for the MiP-CRIP parameters.
+- The elements $J_{ij}$ in the SK model are rounded to 5th decimal places so that $lsb = 10^{-5}$ and we get thebound $\gamma_0 = 10^{-5}$, satisfying the admissibility condition: $3\beta\lambda^2 < \alpha < \beta\lambda^2 + \gamma_0$ for the MiP-CRIM parameters.
 
 ## Notes
 
