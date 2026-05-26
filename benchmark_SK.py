@@ -3,7 +3,7 @@ import numpy as np
 
 # Import from local solvers
 from iamp_sk_solver import *
-from mip_crip import *
+from mip_crim import *
 
 
 def make_sk_matrix(n, seed=0):
@@ -30,8 +30,8 @@ def make_sk_goe_matrix(n, seed=0):
     return J
 
 
-def run_mip_crip(J, seed=0):
-    """Run MiP-CRIP with best tuned parameters for SK model."""
+def run_mip_crim(J, seed=0):
+    """Run MiP-CRIM with best tuned parameters for SK model."""
     n = J.shape[0]
     rng = np.random.default_rng(seed)
     x0 = rng.standard_normal(n)
@@ -46,10 +46,10 @@ def run_mip_crip(J, seed=0):
     )
 
     J_mat = J.copy()  # ensure we don't modify the original J
-    np.fill_diagonal(J_mat, 0)  # zero out diagonal for MiP-CRIP
+    np.fill_diagonal(J_mat, 0)  # zero out diagonal for MiP-CRIM
 
     t0 = time.perf_counter()
-    sigma = MiP_CRIP(J_mat, x0, rng=rng, **params)
+    sigma = MiP_CRIM(J_mat, x0, rng=rng, **params)
     elapsed = time.perf_counter() - t0
 
     energy = -0.5 * float(sigma @ J @ sigma)
@@ -86,7 +86,7 @@ def main():
     n_trials = 100
 
     print("=" * 80)
-    print(f"  Benchmarking: SK Model (IAMP vs MiP-CRIP) across {n_trials} trials")
+    print(f"  Benchmarking: SK Model (IAMP vs MiP-CRIM) across {n_trials} trials")
     print("=" * 80)
 
     final_results = []
@@ -114,8 +114,8 @@ def main():
                 iamp_syncs.append(ri["sync"])
                 iamp_times.append(ri["time"])
 
-                # MiP-CRIP
-                rm = run_mip_crip(J, seed=seed)
+                # MiP-CRIM
+                rm = run_mip_crim(J, seed=seed)
                 mip_energies.append(rm["energy"])
                 mip_syncs.append(rm["sync"])
                 mip_times.append(rm["time"])
@@ -146,7 +146,7 @@ def main():
                 "t_avg": it_mean
             })
             final_results.append({
-                "spin": n, "type": matrix_type, "method": "MiP-CRIP",
+                "spin": n, "type": matrix_type, "method": "MiP-CRIM",
                 "e_avg": me_mean, "e_best": me_best,
                 "s_avg": ms_mean, "s_best": ms_best,
                 "t_avg": mt_mean
@@ -159,7 +159,7 @@ def main():
     print("-" * 105)
     for res in final_results:
         print(f"{res['type']:<10} | {res['spin']:<7} | {res['method']:<10} | {res['e_avg']:>12.2f} | {res['e_best']:>12.2f} | {res['s_avg']:>10.3f} | {res['s_best']:>10.3f} | {res['t_avg']:>12.3f} |")
-        if res['method'] == "MiP-CRIP":
+        if res['method'] == "MiP-CRIM":
             print("-" * 105)
 
     print("=" * 105 + "\n")
