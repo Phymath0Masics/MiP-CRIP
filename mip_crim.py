@@ -1,5 +1,5 @@
 """
-Ising Solvers - MiP-CRIP implementation
+Ising Solvers - MiP-CRIM implementation
 Local-Minima-Preserving Polynomial Relaxation of Ising Problems
 Accepted at ICML 2026
 
@@ -64,7 +64,7 @@ def eng2cut(energy, J_sum):
     return cut_value
 
 
-def MiP_CRIP(
+def MiP_CRIM(
     J, x_init, T=200, K=10,
     alpha=None, beta=None, lambda_=None,
     step=0.01,    # Adam learning rate
@@ -73,10 +73,8 @@ def MiP_CRIP(
     rng=None, return_all=False
 ):
     """
-    MiP-CRIP: Minima Preserving Continuous Relaxation for Ising Problems
+    MiP-CRIM: Minima Preserving Continuous Relaxation for Ising Model
     
-    pCQO-MIS with Adam instead of momentum gradient descent.
-
     Minimizes over the box [-lambda_, lambda_]^n the energy
         H(x) = (beta/4) * ||x||_4^4 - (1/2) x^T (J + alpha I) x
     using Adam, then thresholds the final iterate to ±1 to get spin vector s.
